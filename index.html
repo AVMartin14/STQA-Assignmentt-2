@@ -1,0 +1,148 @@
+<!-- This allows the app to be used as a web interface -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            background-color: #f5e1c5;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 50px;
+        }
+
+        h4 {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px #888888;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+          
+        input[type="number"] {
+            width: 98%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-right: auto;
+            margin-left: auto;
+            width: 20%;
+            font-size: 20px;
+        }
+          
+        p {
+            font-size: 30px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: blue;
+        }        
+    </style>
+  </head>
+  <body>
+    <h1>BMI Calculator</h1>
+    <h4>Enter your height in feet and inches: </h4>
+    <form>
+        <!-- Prompts the user to enter the height input. -->
+        <label for="heightF_input">Height (ft):</label>
+        <input type="number" id="heightF_input" name="heightF_input" required />
+        <br><br>
+        <label for="heightI_input">Height (in):</label>
+        <input type="number" id="heightI_input" name="heightI_input" required />
+        <br><br>
+        <!-- Prompts the user to enter the weight input. -->
+        <label for="weight_input">Weight (lbs):</label>
+        <input type="number" id="weight_input" name="weight_input" required />
+        <br><br>
+        <button type="button" onclick="calculateBMI()">Calculate BMI</button>
+    </form>
+    
+    <div id="result"></div>
+
+    <script>
+        // Function to calculate the BMI.
+        const bmi = function(height_f, heightI_input, weight) {
+            let height_i = parseFloat( heightI_input );
+            // 1. Multiply the weight in pounds by 0.45 (the metric conversion factor).
+            let weight_kg = weight * 0.45;
+            // 2. Multiply the height in inches by 0.025 (the metric conversion factor).
+            let height = ( ( height_f * 12 ) + height_i );
+            let height_m = height * 0.025;
+            // 3. Square the answer from step 2.
+            let square_height = height_m * height_m;
+            // 4. Divide the answer from step 1 by the answer from step 3.
+            let total = ( weight_kg / square_height );
+            return total;
+        };
+
+        // Function to check the user's input.
+        const inches = function(inches) {
+            while (inches >= 12) {
+                console.log(" You must enter inches. ");
+                inches = parseFloat(prompt("   inches: "));
+            }
+        };
+
+        // Functions to output the category based on the weight.
+        const underweight = function(bmi) {
+            // <18.5, Underweight
+            if (bmi < 18.5) return "Underweight";
+        };
+        const normalweight = function(bmi) {
+            // 18.5–24.9, Normal weight
+            if (bmi >= 18.5 && bmi < 25) return "Normal weight";
+        };
+        const overweight = function(bmi) {
+            // 25–29.9, Overweight
+            if (bmi >= 25 && bmi < 30) return "Overweight";
+        };
+        const obese = function(bmi) {
+            // >=30, Obese
+            if (bmi >= 30) return "Obese";
+        };
+
+        function calculateBMI() {
+            let heightF_input = document.getElementById("heightF_input").value;
+            let heightI_input = document.getElementById("heightI_input").value;
+            let weight_input = document.getElementById("weight_input").value;
+
+            inches(heightI_input);
+
+            let BMI = bmi(heightF_input, heightI_input, weight_input);
+            let result = document.getElementById("result");
+
+            result.innerHTML = `
+            <p>BMI: ${BMI.toFixed(1)}</p>
+            <p>Category: ${underweight(BMI) || normalweight(BMI) || overweight(BMI) || obese(BMI)}</p>
+            `;
+        }
+    </script>
+  </body>
+</html>
