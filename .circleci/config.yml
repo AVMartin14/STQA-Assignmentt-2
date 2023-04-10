@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: npm install && npm install --save-dev coveralls
+          command: npm install --save-dev coveralls
       - run:
           name: Run tests
           command: npm test
