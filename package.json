@@ -1,5 +1,5 @@
 {
-  "main": "bmi.js",
+  "main": "bmi.test.js",
   "scripts": {
     "test": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
