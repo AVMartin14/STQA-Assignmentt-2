@@ -1,32 +1,15 @@
-version: 2
+version: 2.1
+
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:14
     steps:
       - checkout
-      - run: npm install
-      - run: npm run test:ci
-  deploy:
-    docker:
-      - image: alpine
-    steps:
-      - run: apk add --update git
-      - run: npm install -g coveralls
-      - run: coveralls < coverage/lcov.info
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - main
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - main
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm test
+
