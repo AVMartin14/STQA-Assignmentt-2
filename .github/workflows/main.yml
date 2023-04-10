@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: coverallsapp/github-action@v3
+        uses: coverallsapp/github-action@master
       - name: Setup Node.js
-        uses: coverallsapp/github-action@v3
+        uses: coverallsapp/github-action@master
         with:
           node-version: '14'
       - name: Install dependencies
