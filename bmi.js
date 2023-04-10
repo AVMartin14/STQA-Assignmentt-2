@@ -12,7 +12,7 @@ const bmi = function(height_f, heightI_input, weight) {
     let total = ( weight_kg / square_height );
     return total;
 };
-
+  
 // Function to check the user's input.
 const inches = function(inches) {
     while (inches >= 12) {
@@ -20,11 +20,11 @@ const inches = function(inches) {
         inches = parseFloat(prompt("   inches: "));
     }
 };
-
+  
 // Functions to output the category based on the weight.
 const underweight = function(bmi) {
     // <18.5, Underweight
-    if (bmi < 18.5) return "Underweight";
+    if (bmi < 18.5) return "Under weight";
 };
 const normalweight = function(bmi) {
     // 18.5–24.9, Normal weight
@@ -32,7 +32,7 @@ const normalweight = function(bmi) {
 };
 const overweight = function(bmi) {
     // 25–29.9, Overweight
-    if (bmi >= 25 && bmi < 30) return "Overweight";
+    if (bmi >= 25 && bmi < 30) return "Over weight";
 };
 const obese = function(bmi) {
     // >=30, Obese
@@ -54,3 +54,14 @@ function calculateBMI() {
     <p>Category: ${underweight(BMI) || normalweight(BMI) || overweight(BMI) || obese(BMI)}</p>
     `;
 }
+
+module.exports = {
+    bmi,
+    inches,
+    underweight,
+    normalweight,
+    overweight,
+    obese,
+    calculateBMI
+};
+  
