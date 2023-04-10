@@ -7,10 +7,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install dependencies and Make
-        command: npm install && make test-coverage
+          name: Install dependencies and Make
+          command: npm install 
       - run:
-        name: Run tests and generate code coverage report
-        command: npm test
-      - coveralls/upload
-workflows: null             
+          name: Run tests and generate code coverage report
+          command: npm test          
