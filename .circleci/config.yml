@@ -10,5 +10,8 @@ orbs:
             - run:
               name: Install dependencies and Make
               command: npm install && make test-coverage
+            - run:
+              name: Run tests
+              command: npm test
             - coveralls/upload
 workflows: null
