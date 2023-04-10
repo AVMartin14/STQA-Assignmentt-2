@@ -4,6 +4,8 @@ jobs:
   build:
     docker:
       - image: circleci/node:14
+    environment:
+      COVERALLS_REPO_TOKEN: VDOU1pSRZY3641ry3AAekApDkiXJDAnLg
     steps:
       - checkout
       - run:
