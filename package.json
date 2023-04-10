@@ -9,4 +9,7 @@
   "devDependencies": {
     "jest": "^29.5.0"
   }
+  "scripts": {
+  "test": "node ./node_modules/mocha/bin/mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js"
+  }
 }
