@@ -25,8 +25,8 @@ workflows:
     jobs:
       - say-hello
       
-      
-- run:
+# This will run your tests and then upload the code coverage report to Coveralls.    
+run:
     name: Run tests and report coverage
     command: |
       npm test
