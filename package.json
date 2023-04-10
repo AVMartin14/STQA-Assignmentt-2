@@ -1,5 +1,5 @@
 {
-  "main": "bmi.test.js",
+  "main": "bmi.js",
   "scripts": {
     "test": "jest --coverage",
     "test:ci": "jest --ci --coverage --testResultsProcessor=jest-junit",
