@@ -24,3 +24,11 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      
+      
+- run:
+    name: Run tests and report coverage
+    command: |
+      npm test
+      npm run coveralls
+
