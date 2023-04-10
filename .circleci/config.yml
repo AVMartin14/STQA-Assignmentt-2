@@ -10,6 +10,5 @@ jobs:
           name: Install dependencies
           command: npm install
       - run:
-          name: Run tests
-          command: npm test
-
+          name: Run tests and generate code coverage report
+          command: npm test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
