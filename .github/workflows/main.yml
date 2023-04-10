@@ -1,23 +1,22 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches: [main] # Triggers when a pull request is made to the main branch
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
-      - name: Setup Node.js
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v2 # Checks out GitHub repo using version 2 of "actions"
+      - uses: actions/setup-node@v1 # Sets up Node
         with:
-          node-version: '14'
+          node-version: 16 # GitHub Actions currently uses Node16
       - name: Install dependencies
         run: npm install
       - name: Run tests and coverage
-        run: npm test -- --coverage
+        run: npm test && get-content coverage/lcov.info | node_modules\coveralls\bin\coveralls.js
       - name: Upload coverage to Coveralls
-        uses: coverallsapp/github-action@v2.1.4
+        uses: coverallsapp/github-action@v2.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-
