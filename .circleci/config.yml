@@ -1,15 +1,9 @@
-# Build and upload to Coveralls in single job. Demo: https://github.com/coverallsapp/actions-demo
-version: '2.1'
-orbs:
-  coveralls: coveralls/coveralls@1.0.6
-  jobs:
-    build:
-      docker:
-        - image: circleci/node:10.0.0
-          steps:
-            - checkout
-        - run:
-            command: npm install && make test-coverage
-            name: Install and Make
-        - coveralls/upload
-workflows: null
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm test
