@@ -15,7 +15,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run tests and coverage
-        run: npm test && get-content coverage/lcov.info | node_modules\coveralls\bin\coveralls.js
+        run: npm test && cat coverage/lcov.info | node_modules\coveralls\bin\coveralls.js
       - name: Upload coverage to Coveralls
         uses: coverallsapp/github-action@v2.0.0
         with:
