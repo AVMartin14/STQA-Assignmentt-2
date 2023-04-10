@@ -1,7 +1,7 @@
 {
   "main": "bmi.js",
   "scripts": {
-    "test": "jest --forceExit"
+    "test": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "dependencies": {
     "readline": "^1.3.0"
